@@ -1,0 +1,224 @@
+test using sellenium web driver
+
+{
+  "id": "da523be3-1897-47be-938c-348120f290ba",
+  "version": "2.0",
+  "name": "taxi test",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "344c499a-8757-462f-8a6c-0aa4fd723ac7",
+    "name": "taxi test1",
+    "commands": [{
+      "id": "11ec8aba-fd2f-4dab-8563-8f8d2e863d17",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "55309941-22b9-4a73-947d-2593078f2ccc",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1050x708",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "afa6d52a-f58c-43db-bc84-3cbd8f74f7a7",
+      "comment": "",
+      "command": "click",
+      "target": "id=filetoupload",
+      "targets": [
+        ["id=filetoupload", "id"],
+        ["name=upfile", "name"],
+        ["css=#filetoupload", "css:finder"],
+        ["xpath=//input[@id='filetoupload']", "xpath:attributes"],
+        ["xpath=//div[@id='myDiv']/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "170cc9e7-82b3-4786-b07a-1006af517549",
+      "comment": "",
+      "command": "click",
+      "target": "id=begin",
+      "targets": [
+        ["id=begin", "id"],
+        ["css=#begin", "css:finder"],
+        ["xpath=//button[@id='begin']", "xpath:attributes"],
+        ["xpath=//div[@id='myDiv']/div/div/form/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,' BEGIN')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0aa71d5-d801-47bb-9598-d07cc4dfb63c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=+",
+      "targets": [
+        ["linkText=+", "linkText"],
+        ["css=.leaflet-control-zoom-in", "css:finder"],
+        ["xpath=//a[contains(text(),'+')]", "xpath:link"],
+        ["xpath=//div[@id='map']/div[2]/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'+')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e25d2782-de0e-46aa-ace4-43a6d7f6509a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=+",
+      "targets": [
+        ["linkText=+", "linkText"],
+        ["css=.leaflet-control-zoom-in", "css:finder"],
+        ["xpath=//a[contains(text(),'+')]", "xpath:link"],
+        ["xpath=//div[@id='map']/div[2]/div/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'+')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "380a082f-3a3e-47bb-96ba-967daea8f6cc",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=-",
+      "targets": [
+        ["linkText=-", "linkText"],
+        ["css=.leaflet-control-zoom-out", "css:finder"],
+        ["xpath=//a[contains(text(),'-')]", "xpath:link"],
+        ["xpath=//div[@id='map']/div[2]/div/div/a[2]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[2]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'-')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e4f86e2a-151b-4c78-8578-36f9129492c2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.leaflet-control-custom",
+      "targets": [
+        ["css=.leaflet-control-custom", "css:finder"],
+        ["xpath=//div[@id='map']/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2474460b-f4b9-4c74-ad90-dc9de3f18397",
+      "comment": "",
+      "command": "click",
+      "target": "css=.leaflet-control-custom",
+      "targets": [
+        ["css=.leaflet-control-custom", "css:finder"],
+        ["xpath=//div[@id='map']/div[2]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "be98e031-4ccc-463e-926d-4bf209398bd8",
+      "comment": "",
+      "command": "click",
+      "target": "id=basemaps",
+      "targets": [
+        ["id=basemaps", "id"],
+        ["name=basemaps", "name"],
+        ["css=#basemaps", "css:finder"],
+        ["xpath=//select[@id='basemaps']", "xpath:attributes"],
+        ["xpath=//div[@id='basemaps-wrapper']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c6822e8d-8bb0-4b45-8e3c-3c0a5d7eecda",
+      "comment": "",
+      "command": "select",
+      "target": "id=basemaps",
+      "targets": [],
+      "value": "label=light_all"
+    }, {
+      "id": "3124e431-9db8-4db5-aa93-55a6130bbcc3",
+      "comment": "",
+      "command": "click",
+      "target": "id=basemaps",
+      "targets": [
+        ["id=basemaps", "id"],
+        ["name=basemaps", "name"],
+        ["css=#basemaps", "css:finder"],
+        ["xpath=//select[@id='basemaps']", "xpath:attributes"],
+        ["xpath=//div[@id='basemaps-wrapper']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e13097cd-d344-454f-9d5b-76b79aff36da",
+      "comment": "",
+      "command": "click",
+      "target": "id=basemaps",
+      "targets": [
+        ["id=basemaps", "id"],
+        ["name=basemaps", "name"],
+        ["css=#basemaps", "css:finder"],
+        ["xpath=//select[@id='basemaps']", "xpath:attributes"],
+        ["xpath=//div[@id='basemaps-wrapper']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f1937d5-bff6-4796-aeaa-49ee42332a25",
+      "comment": "",
+      "command": "select",
+      "target": "id=basemaps",
+      "targets": [],
+      "value": "label=dark_all"
+    }, {
+      "id": "dd135de5-c03c-43d1-9e28-6d4c21071a09",
+      "comment": "",
+      "command": "click",
+      "target": "id=basemaps",
+      "targets": [
+        ["id=basemaps", "id"],
+        ["name=basemaps", "name"],
+        ["css=#basemaps", "css:finder"],
+        ["xpath=//select[@id='basemaps']", "xpath:attributes"],
+        ["xpath=//div[@id='basemaps-wrapper']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad583545-ca72-4ab1-9571-03d7c5f33a22",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fas",
+      "targets": [
+        ["css=.fas", "css:finder"],
+        ["xpath=//a[@id='testa']/i", "xpath:idRelative"],
+        ["xpath=//i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "643b2637-d544-400e-9bd8-6ed7a4c01b4a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fas",
+      "targets": [
+        ["css=.fas", "css:finder"],
+        ["xpath=//a[@id='testa']/i", "xpath:idRelative"],
+        ["xpath=//i", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "9ecd1eea-5a4d-43e6-8f03-7f3c6d98e080",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["344c499a-8757-462f-8a6c-0aa4fd723ac7"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}

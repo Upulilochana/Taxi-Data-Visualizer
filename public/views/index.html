@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title> Taxi Data Visualizer </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.11/themes/css/cartodb.css" />
+
+  <!-- font-awsome library -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Latest compiled JavaScript -->
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <!-- linkfor qunit.css -->
+  <!-- <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">  -->
+
+</head>
+
+<body >
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container ">
+
+      <div class="navbar-header ">
+        <button type="but ton" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class=" "></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+         
+        </button>
+        
+       
+         
+        <a class="navbar-brand " href="#"><img src="img/taxi.jpg" alt="" srcset="" id='logo'><span></span>
+          Taxi Data Visualizer </a> 
+
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <div class="" id="about">About</div>
+          </li>
+          
+          <li>
+            <div class="asterisks"> <a href="https://github.com/manushakaru/new-tvf"><i
+                  class="fa fa-2x fa-github"></i></a></div>
+          </li>
+          <li>
+            <div class="" id="Upload">Upload   </div>
+          </li>
+          <li>
+            <div class="" id="Refresh">Refresh</div>
+          </li>
+          <li>
+            <div class="TaxiColor" id="TaxiColor">TaxiColor</div>
+          </li>
+          <li>
+            <div  class='maptile'>
+              <select name="basemaps" id="basemaps" onChange="changeBasemap(basemaps)">
+                <option value="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png">light_all</option>
+                <option value="http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png">dark_all</option>
+                <option value="http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png">light_nolabels</option>
+                <option value="http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png">dark_nolabels</option>
+                <option value="https://cartocdn_{s}.global.ssl.fastly.net/base-antique/{z}/{x}/{y}.png">base-antique</option>
+                <option value="https://cartocdn_{s}.global.ssl.fastly.net/base-eco/{z}/{x}/{y}.png">base-eco</option>
+                <option value="https://cartocdn_{s}.global.ssl.fastly.net/base-flatblue/{z}/{x}/{y}.png">base-flatblue</option>
+                <option value="https://cartocdn_{s}.global.ssl.fastly.net/base-midnight/{z}/{x}/{y}.png">base-midnight</option>
+              </select>
+            </div>
+          </li>
+          <!-- <li><div class = "attribution">Attribution</div></li> -->
+          
+          <!-- <li><img src="img/LogoSample_ByTailorBrands(3).jpg" alt="" srcset="" id='logo'></li> -->
+         
+          
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+
+
+    </div>
+  </div>
+
+
+  <div class='popup aboutPopup ' style="display: none">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">About</h3><span class="glyphicon glyphicon-remove"></span>
+      </div>
+      <div class="panel-body">
+        <strong>
+          <p>On demand high capacity taxi data visualization by <a href="#">TAXI VISUALIZER</a></p>
+        </strong>
+
+        <p>This project is based on taxi data visualization. This project is combination of <a
+            href="https://leafletjs.com/">leaflet maps</a> , <a
+            href="https://github.com/ewoken/Leaflet.MovingMarker">leaflet moving marker</a>
+          , <a href="https://github.com/yigityuce/Leaflet.Control.Custom">leaflet custom controller</a> , <a
+            href="https://github.com/tsayen/dom-to-image">dom to image</a> and <a href="https://d3js.org/">d3 js.</a>
+        </p>
+        <p>The intent is to see how/when taxis move around the cities. Especially user can parallelly visualize more
+          taxies with high performances.
+        </p>
+        <p>
+          Upto now, <a href="#">TAXI VISUALIZER</a> required special data format as below for represent the instance of
+          taxi
+        </p>
+        <h1>lattiude, logitude, number of passengers, state ( idle = 0, pickup = 1, dropoff = 2 ) </h1>
+        <p>User can upload file for each taxi, having above format </p>
+        <p><a href="https://github.com/manushakaru/new-tvf">Code on Github</a></p>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="map">
+  </div>
+
+
+  
+
+  <div style="display:none" id='testlegend' class="boxy row">
+    <div class=" TaxiColor">
+      <img src="img/1024px-Light_Blue_Circle.svg.png" class="icon-img">
+      <p class="icon" id='1'>0 passengers</p>
+      <img src="img/79-796559_green-fake-bullet-green-circle-transparent-png.png" class="icon-img">
+      <p class="icon" id='1'>1 passengers</p>
+      <img src="img/yellow.png" class="icon-img">
+      <p class="icon" id='1'>2 passengers</p>
+      <img src="img/glossy-green.png" class="icon-img">
+      <p class="icon" id='1'>3 passengers</p>
+      <img src="img/red.png" class="icon-img">
+      <p class="icon" id='1'>4 passengers</p>
+    </div>
+  </div>
+
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    
+    <div class="modal-content" id='screenshot_div'>
+        <p class='p_upload'>DOWNLOAD SCREEN IMAGE </p>
+      <span class="close close_">&times;</span>
+      <!-- <p class='p_upload'>UPLOAD FILES </p> -->
+      <button id='download' class="btn_download"><i class="fa fa-download"> </i> Download</button>
+
+    </div>
+
+  </div>
+
+
+  <div id="inputfile" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content-input" id='screenshot_div'>
+      <span class="close close_" id='close_inp'>&times;</span>
+
+      <div class='border'>
+        <p class='p_upload_'>UPLOAD FILES </p>
+
+        <div class="input-container">
+          <input type="file" id="real-input" multiple='' style="display: none">
+          <button class="browse-btn" id='brw-inp'>
+            Browse Files
+          </button>
+          <span class="file-info">Upload a file</span>
+          <div class="uploadBtn">
+            <div class="label" id = 'begin' onclick="upload(event);">Upload</div>
+            <div class="loading"></div>
+          </div>
+  
+        </div>
+        <!-- <input type="file" id="real-input" multiple='' style='display: block'> -->
+        <!-- <input id="input-b1" name="input-b1" type="file" class="file" data-browse-on-zone-click="true"> -->
+        
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="vis">
+    <!-- for testing -->
+    <!-- <div class="test">
+                  <div id="qunit"></div>
+                  <div id="qunit-fixture"></div>
+                 </div> -->
+    <button id="play-button" class="play-button">Play</button>
+    <button id='speed_txt' class="play-button">x1</button>
+    <button id='backward-button' class="play-button"><i class="fa fa-backward"></i></button>
+    <button id='forward-button' class="play-button"><i class="fa fa-forward"></i></button>
+    
+
+  </div>
+
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script type="text/javascript" src="js/MovingMarker.js"></script>
+
+  <script type="text/javascript" src="js/timeslider.js"></script>
+  <script type="text/javascript" src="js/leaflet-color-markers.js"></script>
+  <script type="text/javascript" src="js/dom-to-image.min.js"></script>
+  <script type="text/javascript" src="js/leaflet-custom-controler.js"></script>
+  <!-- <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script> -->
+  <!-- <script type="text/javascript" src="js/maptest.js"></script> -->
+  <script type="text/javascript" src="js/script.js"></script>
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script>
+    var worker = new Worker('js/worker.js');
+    var load_promises = [];
+
+    worker.onmessage = function (e) {
+
+      var dt = e.data
+      for (let index = 0; index < dt.length; index++) {
+        var load_prommise = new Promise(function (resolve, reject) {
+          var markerXX = L.Marker.movingMarker(dt[index][0], 300000, dt[index][1], { autostart: false }).setIcon(blueIcon).setOpacity(0.5).addTo(map);
+          markerarray.push(markerXX)
+          resolve(markerXX)
+        })
+        load_promises.push(load_promises)
+      }
+
+      console.log(markerarray.length); // e.data should be an array of ArrayBuffers.
+    };
+
+    worker.onerror = function (e) {
+      document.querySelector('#error').textContent = [
+        'ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message].join('');
+      // console.log(e)
+    };
+
+    document.querySelector('input[type="file"]').addEventListener('change', function (e) {
+      document.getElementsByClassName('uploadBtn')[0].classList.remove('active');
+      worker.postMessage(this.files);
+
+    }, false);
+  </script>
+<script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+    <script>
+    $('#TaxiColor').click(function(){
+
+      console.log(this.name)
+        if (this.name == 'click') {
+          this.title = 'close legend'
+          this.name = 'clicked'
+        } else {
+          this.title = 'show legend'
+        }
+        $('#testlegend').slideToggle();
+
+    })
+    </script>
+
+<script>
+  $('#Upload').click(function(){$("#inputfile").fadeToggle()
+        var span = document.getElementsByClassName("close")[1];
+        var modal_input = document.getElementById("inputfile");
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+          modal_input.style.display = "none";
+         
+        }
+        window.onclick = function (event) {
+          if (event.target == modal_input) {
+            modal_input.style.display = "none";
+        
+          }
+        }
+
+  })
+  </script>
+   <script>
+    $('#Refresh').click(function(){
+
+       location.reload();
+    })
+    </script>
+
+    
+</body>
+
+
+</html>
